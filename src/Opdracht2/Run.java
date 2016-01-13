@@ -22,7 +22,7 @@ public class Run {
         IntByReference lpTotalNumberOfClusters = new IntByReference();
         IGetHigh.INSTANCE.GetDiskFreeSpaceA("C:\\", lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, lpTotalNumberOfClusters);
         
-        long totaal = (long) (lpNumberOfFreeClusters.getValue() * lpSectorsPerCluster.getValue() * lpBytesPerSector.getValue());
+        long totaal =  ((long) lpNumberOfFreeClusters.getValue() * (long) lpSectorsPerCluster.getValue() * (long) lpBytesPerSector.getValue());
 
         System.out.println("Totaal vrije ruimte: " + abs(totaal) + "Bytes \n");
     }
