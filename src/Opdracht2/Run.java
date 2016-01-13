@@ -5,17 +5,25 @@
  */
 package Opdracht2;
 
+import com.sun.jna.ptr.IntByReference;
+import static java.lang.Math.abs;
+
 /**
  *
  * @author Vito Corleone
  */
 public class Run {
-        public static void main(String[] args) {
-        // Kamil je moeder
-        // oook de jouwe
-            
-        HighSpace highSpace = new HighSpace();
-        IGetHigh.INSTANCE.GetDiskFreeSpaceA("C:\\", highSpace);
-        System.out.println(highSpace.toString());
-        }
+
+    public static void main(String[] args) {
+
+        IntByReference lpSectorsPerCluster = new IntByReference();
+        IntByReference lpBytesPerSector = new IntByReference();
+        IntByReference lpNumberOfFreeClusters = new IntByReference();
+        IntByReference lpTotalNumberOfClusters = new IntByReference();
+        IGetHigh.INSTANCE.GetDiskFreeSpaceA("C:\\", lpSectorsPerCluster, lpBytesPerSector, lpNumberOfFreeClusters, lpTotalNumberOfClusters);
+        
+        long totaal = (long) (lpNumberOfFreeClusters.getValue() * lpSectorsPerCluster.getValue() * lpBytesPerSector.getValue());
+
+        System.out.println("Totaal vrije ruimte: " + abs(totaal) + "Bytes \n");
+    }
 }
