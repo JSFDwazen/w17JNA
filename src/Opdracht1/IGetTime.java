@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Opdracht2;
+package Opdracht1;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
+
 /**
  *
  * @author Vito Corleone
  */
-public interface IGetHigh extends Library{
-        public IGetHigh INSTANCE = (IGetHigh)Native.loadLibrary("Kernel32", IGetHigh.class);
-        
-        boolean GetDiskFreeSpaceA(String path, HighSpace result); 
-
+public interface IGetTime extends Library{
+    
+    public IGetTime INSTANCE = (IGetTime)Native.loadLibrary("Kernel32", IGetTime.class);
+   
+    public void GetSystemTime(SystemTime result);   
 }
